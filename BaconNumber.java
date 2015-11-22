@@ -12,6 +12,12 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.Stack;
 
+/**
+ * BaconNumber.java Calculates the bacon number from one given actor to another
+ * 
+ * @author Isabella Zelichenko and Alan Wang
+ * 
+ */
 public class BaconNumber {
   /** The center from which the bacon number is calculated */
   private String center;
@@ -449,12 +455,12 @@ public class BaconNumber {
       System.out.println("1. bacon -- calculate the bacon number of an actor, the average distance for "
                             + "current center, and the table of distance for current center");
       System.out.println("2. recenter -- change the center of the game");
-      System.out.println("4. topcenter -- find the top n centers by average distance");
-      System.out.println("5. findall -- find the bacon number of every actor in the database");
-      System.out.println("6. most -- find the actor with the most film credits");
-      System.out.println("7. longest -- prints out one of the longest paths to the center");
-      System.out.println("8. movies -- list all the movies a given actor has played in");
-      System.out.println("9. exit -- exit the game");
+      System.out.println("3. topcenter -- find the top n centers by average distance");
+      System.out.println("4. findall -- find the bacon number of every actor in the database");
+      System.out.println("5. most -- find the actor with the most film credits");
+      System.out.println("6. longest -- prints out one of the longest paths to the center");
+      System.out.println("7. movies -- list all the movies a given actor has played in");
+      System.out.println("8. exit -- exit the game");
       
       System.out.println(" ");
       System.out.print("Enter command: ");
