@@ -489,12 +489,36 @@ public class BaconNumber {
         String nameactor = name.nextLine();
         if (bn.BNumber(nameactor) == -2) {
           System.out.println("This actor doesn't exist in the database!");
+        } else {
+          bn.movies(nameactor);
+        }
+      } else if (command.equals("topcenter")) {
+        System.out.print("Calculate this many topcenters: ");
+        Scanner input4 = new Scanner(System.in);
+        int topn = input4.nextInt();
+        bn.topcenter(topn);
+      } else if (command.equals("bacon")) {
+        System.out.print("Enter actor name: ");
+        Scanner name = new Scanner(System.in);
+        String nameactor = name.nextLine();
+        if (bn.BNumber(nameactor) == -2) {
+          System.out.println("This actor doesn't exist in the database!");
+        } else {
+          System.out.println(" ");
+          System.out.print(bn.find(nameactor));
+          System.out.print(" (" + bn.BNumber(nameactor) + ")");
+          System.out.println(" ");
+          System.out.println(" ");
+          System.out.print("Average Bacon Number: ");
+          bn.avgdist();
+          System.out.println(" ");
+          bn.table();
+        }
+      } else if (command.equals("exit")) {
+        keepRun = false;
       } else {
-        bn.movies(nameactor);
+        System.out.println("Sorry, this command does not exist");
       }
-    } else if (command.equals("topcenter")) {
-      System.out.print("Calculate this many topcenters: ");
-      Scanner input4 = new Scanner(System.in);
-      int topn = input4.nextInt();
-      bn.topcenter(topn);
+    }
+  }
 }
