@@ -135,34 +135,34 @@ public class BaconNumber {
      * @return Bacon number
      */
   public int BNumber (String name) {
-    if (this.actors.containsKey(name) == false){
+    if (this.actors.containsKey(name) == false){ //no such actor in our list
       return -2;
     }
-    this.actors.get(name).distance = 0;
-    this.actors.get(name).isVisited = true;
-    Queue<Vertex> nextNeighbor = new ArrayDeque<Vertex>();
-    if (name.equals(this.center)) {
+    this.actors.get(name).distance = 0; //set distance to 0
+    this.actors.get(name).isVisited = true; //visited given actor
+    Queue<Vertex> nextNeighbor = new ArrayDeque<Vertex>(); //queue of subsequent neighbors
+    if (name.equals(this.center)) { //if given actor is the center
       restoreIsVisited();
-      return 0;
+      return 0; 
     } else {
-      nextNeighbor.add(this.actors.get(name));
-      while (nextNeighbor.isEmpty() == false) {
-        Vertex next = nextNeighbor.poll();
-        ArrayList<Vertex> neighbors;
-        if (this.actors.containsValue(next)) {
-          neighbors = this.actors.get(next.Name()).Neighbors();
-        } else {
-          neighbors = this.movies.get(next.Name()).Neighbors();
+      nextNeighbor.add(this.actors.get(name)); //add actor to neighbors queue
+      while (nextNeighbor.isEmpty() == false) { //while the queue has actors lined up
+        Vertex next = nextNeighbor.poll(); //set 'next' to first actor in queue (and remove it)
+        ArrayList<Vertex> neighbors; //list of each Vertex's neighbors
+        if (this.actors.containsValue(next)) { //if we are dealing with an actor
+          neighbors = this.actors.get(next.Name()).Neighbors(); //get actor's list of movies
+        } else { //otherwise this is a movie
+          neighbors = this.movies.get(next.Name()).Neighbors(); //get movie's list of actors
         }
-        for (int n = 0; n < neighbors.size(); n++) {
-          if (neighbors.get(n).isVisited == false) {
-            neighbors.get(n).distance = next.distance + 1;
-            if (neighbors.get(n).Name().equals(this.center)) {
-              restoreIsVisited();
-              return neighbors.get(n).distance / 2;
+        for (int n = 0; n < neighbors.size(); n++) { //go through neighbors list 
+          if (neighbors.get(n).isVisited == false) { //if element has not yet been looked at
+            neighbors.get(n).distance = next.distance + 1; //set its distance to previous Vertex's distance +1
+            if (neighbors.get(n).Name().equals(this.center)) { //we have reached the center
+              restoreIsVisited(); 
+              return neighbors.get(n).distance / 2; //since we increased by 1 for both movies and actors, we need to divide by two to disregard movies.
             }
-            neighbors.get(n).isVisited = true;
-            nextNeighbor.add(neighbors.get(n));
+            neighbors.get(n).isVisited = true; //set isVisited to true
+            nextNeighbor.add(neighbors.get(n)); //add each neighbor to next neighbor list to continue process
           }
         }
       }
